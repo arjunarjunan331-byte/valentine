@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vandhanooiii 💖</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: linear-gradient(to bottom, #ffe6f0, white);
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    h1 {
+      font-size: 45px;
+      color: #ff2e88;
+      text-shadow: 2px 2px 10px pink;
+    }
+
+    button {
+      font-size: 22px;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      position: absolute;
+      transition: 0.2s;
+    }
+
+    .yes-button {
+      background: #28c76f;
+      color: white;
+      left: 35%;
+      top: 55%;
+    }
+
+    .no-button {
+      background: #ff4d4d;
+      color: white;
+      left: 55%;
+      top: 55%;
+    }
+
+    /* Falling hearts */
+    .heart {
+      position: fixed;
+      top: -20px;
+      font-size: 24px;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Hidden result page */
+    #resultPage {
+      display: none;
+      padding: 40px;
+    }
+
+    #resultPage img {
+      width: 280px;
+      border-radius: 25px;
+      margin-top: 25px;
+      box-shadow: 0px 0px 25px pink;
+    }
+
+    #resultPage p {
+      font-size: 25px;
+      margin-top: 30px;
+      color: #ff2e88;
+      font-weight: bold;
+    }
+
+    #resultPage h2 {
+      margin-top: 20px;
+      color: deeppink;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- MAIN PAGE -->
+  <div id="mainPage">
+    <h1>Vandhana 💖 Will You Be My Valentine? 💘</h1>
+
+    <button class="yes-button" onclick="handleYesClick()">
+      Yesssss 💖
+    </button>
+
+    <button class="no-button" id="noBtn">
+      Noooooo 💔
+    </button>
+  </div>
+
+  <!-- RESULT PAGE -->
+  <div id="resultPage">
+    <h1 style="color:hotpink;">Yayyy Vandhana 😍💖</h1>
+
+    <img src="yourphoto.jpg" alt="Our Photo">
+
+    <p>
+      "oohooo angane aano enna sherry baa kettam donkeyyyy..." 🤗💞
+    </p>
+
+    <h2>Forever Yours, Arjun ❤️</h2>
+  </div>
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+
+    /* NO Button Runs Away */
+    noBtn.addEventListener("mouseover", moveButton);
+    noBtn.addEventListener("touchstart", moveButton);
+
+    function moveButton() {
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+
+      noBtn.style.left = Math.random() * maxX + "px";
+      noBtn.style.top = Math.random() * maxY + "px";
+    }
+
+    /* Falling Hearts Animation */
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💖";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }
+
+    setInterval(createHeart, 400);
+
+    /* YES Click Action */
+    function handleYesClick() {
+
+      // Play Music after Click ✅
+      let music = document.getElementById("bgMusic");
+      music.play();
+
+      // Hide Main Page
+      document.getElementById("mainPage").style.display = "none";
+
+      // Show Result Page
+      document.getElementById("resultPage").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
